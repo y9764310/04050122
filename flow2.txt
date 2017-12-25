@@ -1,0 +1,97 @@
+[
+    {
+        "id": "5bdbbc63.6831b4",
+        "type": "inject",
+        "z": "eb765966.e9f708",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "38c2afd0.2c3ff"
+            ]
+        ]
+    },
+    {
+        "id": "38c2afd0.2c3ff",
+        "type": "function",
+        "z": "eb765966.e9f708",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey:\"MLpnbvt0vTv0guQF\"\n};\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "8bfeb02.cf7f45",
+                "d2196088.4d482"
+            ]
+        ]
+    },
+    {
+        "id": "8bfeb02.cf7f45",
+        "type": "http request",
+        "z": "eb765966.e9f708",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/DLx0E7TG/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "f9bf1b26.98f6f8",
+                "4a3fb967.fd8588"
+            ]
+        ]
+    },
+    {
+        "id": "d2196088.4d482",
+        "type": "http request",
+        "z": "eb765966.e9f708",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/DLx0E7TG/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 571,
+        "y": 311,
+        "wires": [
+            [
+                "f9bf1b26.98f6f8",
+                "4a3fb967.fd8588"
+            ]
+        ]
+    },
+    {
+        "id": "f9bf1b26.98f6f8",
+        "type": "debug",
+        "z": "eb765966.e9f708",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 790,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4a3fb967.fd8588",
+        "type": "http response",
+        "z": "eb765966.e9f708",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 300,
+        "wires": []
+    }
+]
